@@ -39,28 +39,36 @@ export const FormSubmission = () => {
             }
         }
     }
-    const [object,setObject] = useState({
-        userDiet: userDiet,
-        userDishType: userDishType,
-        userIngredients: userIngredients,
-        userIntolerance: userIntolerance,
-        userMaxCalories: userMaxCalories,
-    })
-    useEffect(() => {
+    const [object, setObject] = useState({
+        diet: userDiet,
+        type: userDishType,
+        includeIngredients: userIngredients,
+        intolerances: userIntolerance,
+        maxCarbs: userMaxCalories,
+      });
+      
+      useEffect(() => {
         setObject((prev) => {
-            let temp = object
-            temp.userDiet = userDiet
-            temp.userDishType = userDishType
-            temp.userIngredients = userIngredients
-            temp.userIntolerance = userIntolerance
-            temp.userMaxCalories = userMaxCalories
-            return temp
-        })
-    },[userDiet,userDishType,userIngredients,userIntolerance,userMaxCalories])
+          return {
+            ...prev,
+            diet: userDiet,
+            type: userDishType,
+            includeIngredients: userIngredients,
+            intolerances: userIntolerance,
+            maxCarbs: userMaxCalories,
+          };
+        });
+      }, [userDiet, userDishType, userIngredients, userIntolerance, userMaxCalories]);
+      
 
     useEffect(() => {
         console.log(object)
     },[object])
+
+    const handleRecipe = () => {
+        
+        console.log(object)
+    }
     return (
         <div>
             <Navbar></Navbar>
@@ -226,7 +234,14 @@ export const FormSubmission = () => {
                         </ul>
                     </div>
                     <div className="flex justify-center">
-                        <button className="bg-[#5C9125] text-white min-w-[300px] min-h-[60px] m-auto rounded-[25px]">Get recipe!</button>
+                        <Link to={{
+                            pathname: "/result",
+                        }} state={object} className="bg-[#5C9125] text-white min-w-[300px] min-h-[60px] m-auto rounded-[25px] grid place-content-center"> 
+                            {/* <button className="bg-[#5C9125] text-white min-w-[300px] min-h-[60px] m-auto rounded-[25px]" onClick={() => {
+                                handleRecipe()
+                            }}>Get recipe!</button> */}
+                            <span>Get recipe!</span>
+                        </Link>
                     </div>
                 </div>
                 <style>
