@@ -13,7 +13,7 @@ export const HomePage = () => {
         <div>
             <Navbar></Navbar>
             <div className="h-screen items-start justify-center">
-                <div className="relative h-2/5 w-full">
+                <div className="relative h-1/2 w-full">
                     <img className="inset-0 object-cover w-full h-full" src={Image} alt="Background Image" />
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
                         <h1 className="text-black text-5xl font-bold">Get ideas for your cooking</h1>
@@ -21,6 +21,8 @@ export const HomePage = () => {
                         <button className="bg-[#5C9125] hover:bg-[#4D7721] text-white font-bold py-2 px-4 rounded mt-5" onClick={redirectTo}>Get started!</button>
                     </div>
                 </div>
+                <div className="container px-[60px]">
+
                 <div className="container mx-auto">
                     <h2 className="text-4xl font-bold text-start text-black mt-10 mb-10">Get curated by AI.</h2>
                 </div>
@@ -36,9 +38,10 @@ export const HomePage = () => {
                         </div>
                     ))}
                 </div>
+                </div>
 
             </div>  
-            <div className="container mx-auto mb-10">
+            <div className="container mx-auto pt-[60px] mb-[60px] px-[60px]">
                 {/* <h1 className="text-4xl font-bold text-center text-black mb-10">Stop wasting food in the fridge.</h1> */}
                 <div className="grid grid-cols-2 mt-10">
                     <div className="flex justify-center items-center">
@@ -68,7 +71,7 @@ export const HomePage = () => {
                 </div>
             </div>
 
-            <div className="w-full h-[200px] bg-[#5C9125] flex flex-col justify-center items-center">
+            <div className="w-full h-[300px] bg-[#5C9125] flex flex-col justify-center items-center">
                 <h2 className="text-3xl font-bold text-center text-white">See our product in action.</h2>
                 <button className="bg-[#FFFFFF] hover:bg-[#4D7721] hover:text-white text-black font-bold py-2 px-4 rounded mt-5" onClick={redirectTo}>Explore now.</button>
             </div>

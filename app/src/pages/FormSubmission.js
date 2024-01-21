@@ -199,8 +199,7 @@ export const FormSubmission = () => {
                                 </p>
                             </div>
                         </div>
-                    </div>
-                    
+                    </div>    
                 </div>
                 <div className="col-span-2 rounded-[45px] border border-black bg-[#E7EFDE] py-3 px-[60px] flex flex-col items-center">
                     <div className="flex justify-center">
