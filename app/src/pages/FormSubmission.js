@@ -5,16 +5,15 @@ import { Link } from "react-router-dom";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
 const listOfIntolerance = ["dairy", "egg", "gluten","grain", "peanut","seafood","sesame","shellfish","soy","sulfite","tree nut","wheat"];
 export const FormSubmission = () => {
+    const ingredientsArray = require('../config');
     const [listOfDishType,setListOfDishType] = useState(["main course","side dish","dessert","appetizer","salad","bread","breakfast","soup","beverage","sauce","marinate","fingerfood","snack","drink"])
     const [userDishType,setUserDishType] = useState([])
     const [listOfDiets,setListOfDiets] = useState(["gluten free","kenogenic", "vegeterian", "lacto-vegeterian", "ovo-vegetarian", "vegan","pescetarian", "paleo","primal","lowfodmap","whole30"])
     const [userDiet,setUserDiet] = useState([])
     const [userIntolerance,setUserIntolerance] = useState([])
-    const [userIngredients,setUserIngrdients] = useState(["chicken", "lettuce", "cheese"]);
+    const [userIngredients,setUserIngrdients] = useState([]);
     const [userMaxCalories,setUserMaxCalories] = useState(0)
-    useEffect(() => {
-        console.log(userIntolerance)
-    },[userIntolerance])
+    const [recommendation,setRecommendation] = useState([])
     const removeItemFromList = (element,list,setList) => {
         const newList = list.filter(item => item !== element);
         setList(newList)
@@ -26,15 +25,68 @@ export const FormSubmission = () => {
     const elementInList = (item,list) => {
         return list.find((element) => element === item)
     }
+    const handleUserInput = (text) => {
+        if (typeof text === 'string'){
+            if (text.length > 0){
+                let result = ingredientsArray.filter((item) => {
+                    return item.startsWith(text) && !(elementInList(item,userIngredients))
+                })
+                result = result.slice(0,10)
+                setRecommendation(result)
+            }
+            else {
+                setRecommendation([])
+            }
+        }
+    }
+    const [object,setObject] = useState({
+        userDiet: userDiet,
+        userDishType: userDishType,
+        userIngredients: userIngredients,
+        userIntolerance: userIntolerance,
+        userMaxCalories: userMaxCalories,
+    })
+    useEffect(() => {
+        setObject((prev) => {
+            let temp = object
+            temp.userDiet = userDiet
+            temp.userDishType = userDishType
+            temp.userIngredients = userIngredients
+            temp.userIntolerance = userIntolerance
+            temp.userMaxCalories = userMaxCalories
+            return temp
+        })
+    },[userDiet,userDishType,userIngredients,userIntolerance,userMaxCalories])
+
+    useEffect(() => {
+        console.log(object)
+    },[object])
     return (
         <div>
             <Navbar></Navbar>
             <form className="grid grid-cols-5 gap-10 mx-[60px] mt-2 min-h-[100vh]">
                 <div className="col-span-3">
                     <h1 className="text-[64px] font-bold text-center">What's in your fridge ?</h1>
-                    <div className="w-full rounded-[25px] border-[#5C9125] border-2 flex items-center py-2 px-3 mb-2">
+                    <div className="w-full rounded-[25px] border-[#5C9125] border-2 flex items-center py-2 px-3 mb-2 relative focus:border-b-0">
                         <CiSearch size={20} />
-                        <input type="text" id="search-form" className="ml-2 focus:outline-none outline-none" />
+                        <input type="text" id="search-form" className="ml-2 focus:outline-none outline-none w-full" onChange={(e) => {
+                            handleUserInput(e.target.value)
+                        }} />
+                        {recommendation.length > 0 && <ul className="absolute top-[50px] left-[-1px] w-full bg-white z-[1] rounded-[25px] border-[#5C9125] border-2 p-3 ">
+                        {recommendation.map((item,index) => {
+                            return (
+                                <li className="w-full">
+                                    <Link onClick={() => {
+                                        addItemToList(item,userIngredients,setUserIngrdients)
+                                        removeItemFromList(item,recommendation,setRecommendation)
+                                    }} className="block w-full hover:bg-slate-400">
+                                     {item}
+                                    </Link>
+                                   
+                                </li>
+                            )
+                        })}
+                        </ul>}
                     </div>
                     <label htmlFor="search-form" className="ml-10">Eg: Chicken, Beef, Tomato, Flour, etc.</label>
                     <div className="w-full h-[5px] bg-[#5C9125] mt-3.5"></div>

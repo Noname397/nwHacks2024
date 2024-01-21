@@ -821,4 +821,6 @@ const ingredientsArray = [
     'yogurt',
     'yukon gold potato'
     ];
+
+module.exports = ingredientsArray;
     
