@@ -9,7 +9,7 @@ export const Navbar = () => {
             <div className="bg-white w-[50px] h-[50px]">
             </div>
             <div className="flex gap-6 text-white items-center">
-                <Link>Get random recipe</Link>
+                <Link to={"/result"}>Get random recipe</Link>
                 <Link>Hi, {userName}</Link>
                 <Link className="flex items-center justify-center">  
                 <CiUser size={30}></CiUser>
