@@ -1,10 +1,12 @@
-import { Navbar } from "../components/Navbar"
+import { Navbar } from "../components/Navbar";
 import { CiSearch } from "react-icons/ci";
 import { Link } from "react-router-dom";
-const listOfDishType = ["breakfast","lunch","dinner"]
+
+const listOfDishType = ["breakfast", "lunch", "dinner"];
 const listOfIngredients = ["chicken", "lettuce", "cheese"];
 const listOfIntolerance = ["dairy", "egg", "peanut"];
-const listOfDiets = ["vegeterian","vegan","pescetarian"];
+const listOfDiets = ["vegetarian", "vegan", "pescetarian"];
+
 export const FormSubmission = () => {
     return (
         <div>
