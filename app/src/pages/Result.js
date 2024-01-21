@@ -43,15 +43,11 @@ const options = {
     number: '3'
   },
   headers: {
-    'X-RapidAPI-Key': 'f66c5a91ccmsh80157abf4158d12p1e4949jsn8153988c095b',
+    'X-RapidAPI-Key': config.API_KEY,
     'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
   }
 };
 
-// const getCal = {
-//     method: 'GET',
-//     url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/ingredients/16223/amount',
-// }
 
 try {
 	const response = await axios.request(options);
