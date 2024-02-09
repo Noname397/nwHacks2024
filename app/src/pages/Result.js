@@ -9,6 +9,7 @@ let userInfo;
 export const Result = () => {
     // const [listOfRecipes, setListOfRecipes] = useState([]);
     const userInfo = useLocation().state;
+    console.log(userInfo);
 
     // useEffect(() => {
     //     const fetchData = async () => {
@@ -77,13 +78,9 @@ const getRecipe = (userInfo) => {
             // intolerances: userInfo.intolerances.join(","),
             // maxCarbs: parseInt(userInfo.maxCarbs,10),
             query: 'dish',
-    cuisine: '',
-    excludeCuisine: '',
     diet: userInfo.diet.join(","),
     intolerances: userInfo.intolerances.join(","),
-    equipment: '',
     includeIngredients: userInfo.includeIngredients.join(","),
-    excludeIngredients: '',
     type: userInfo.type.join(","),
     instructionsRequired: 'true',
     fillIngredients: 'false',
@@ -194,15 +191,16 @@ const randomOptions = {
 
 try {
     let response;
-        if (userInfo == null) response =  await axios.request(randomOptions);
-        if (userInfo) {
+        if (!userInfo) {
+            response =  await axios.request(randomOptions);
+        } else {
         console.log("adshjsdad")
-        response =  await axios.request(getRecipe(userInfo))
+        response =  await axios.request(getRecipe(userInfo));
         } 
     // console.log(response.data);
-    console.log(res)
 
     res = response.data.recipes;
+    console.log("QSqsASDASASD", res);
     
 } catch (error) {
     console.error(error);
