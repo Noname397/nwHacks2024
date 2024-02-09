@@ -13,15 +13,15 @@ export const HomePage = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <div className={`h-[50vh] w-full flex items-start justify-center bg-cover bg-no-repeat `} style={{backgroundImage: `url(${Image})`}}>
+            <div className={`h-[50vh] w-full flex items-start justify-center bg-cover bg-no-repeat px-[24px] md:px-[60px]`} style={{backgroundImage: `url(${Image})`}}>
                     <div className="h-full flex flex-col items-center justify-center">
-                    <h1 className="text-black text-xl min-[320px]:text-2xl min-[450px]:text-3xl sm:text-4xl md:text-5xl font-bold">Get ideas for your cooking</h1>
-                    <p className="text-black  mintext-base lg:text-lg font-regular pt-2">Grab your leftovers, we are cooking.</p>
+                    <h1 className="text-black text-xl min-[320px]:text-2xl min-[450px]:text-3xl sm:text-4xl md:text-5xl font-bold text-center">Get ideas for your cooking</h1>
+                    <p className="text-black  mintext-base lg:text-lg font-regular pt-2 text-center">Grab your leftovers, we are cooking.</p>
                     <button className="bg-[#5C9125] hover:bg-[#4D7721] text-white font-bold py-2 px-4 rounded mt-5" onClick={redirectTo}>Get started!</button>
                     </div>
             </div>  
             <div className="px-[60px] mt-10 ">
-                <h2 className="text-4xl font-bold text-start text-black mb-10">Get curated by AI.</h2>
+                <h2 className="text-2xl md:text-4xl font-bold text-start text-black mb-10">Get curated by AI.</h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-5 place-items-center gap-x-5 gap-y-10">
                     {listOfRecipes.map((recipe, index) => (
                         <div key={index} className="max-w-sm rounded-lg overflow-hidden shadow-xl relative">
@@ -63,8 +63,8 @@ export const HomePage = () => {
                 </div>
             </div>
 
-            <div className="w-full h-[300px] bg-[#5C9125] flex flex-col justify-center items-center">
-                <h2 className="text-3xl font-bold text-center text-white">See our product in action.</h2>
+            <div className="w-full h-[300px] bg-[#5C9125] flex flex-col justify-center items-center px-[24px] md:px-[60px]">
+                <h2 className="text-2xl md:text-2xl lg:text-3xl font-bold text-center text-white">See our product in action.</h2>
                 <button className="bg-[#FFFFFF] hover:bg-[#4D7721] hover:text-white text-black font-bold py-2 px-4 rounded mt-5" onClick={redirectTo}>Explore now.</button>
             </div>
             <Footer></Footer>

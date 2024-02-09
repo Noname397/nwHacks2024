@@ -4,7 +4,7 @@ import { FaFacebook } from "react-icons/fa";
 import { TfiTwitterAlt } from "react-icons/tfi";
 import { FaTiktok } from "react-icons/fa";
 import { FaPinterest } from "react-icons/fa6";
-import { MdHomeRepairService } from "react-icons/md";
+import { FaHome } from "react-icons/fa";
 import { IoIosPhonePortrait } from "react-icons/io";
 import { CiMail } from "react-icons/ci";
 import { Link } from 'react-router-dom';
@@ -19,7 +19,7 @@ export const Footer = () => {
                 <button onClick={redirectTo}>Contact Us</button>
                 <button onClick={redirectTo}>Policy</button>
             </div> */}
-            <div className='grid grid-cols-1 min-[500px]:grid-cols-3 gap-y-4 gap-x-4 md:gap-x-6 py-6 px-[24px] md:px-[60px]'>
+            <div className='grid grid-cols-1 min-[640px]:grid-cols-3 gap-y-4 gap-x-4 md:gap-x-6 py-6 px-[24px] md:px-[60px]'>
                 <div>
                     <h2 className='font-bold'>More about project</h2>
                     <p className='mt-5 sm:mt-10'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut dolores in recusandae sed repudiandae rem exercitationem. Non sequi, itaque officia asperiores quia dignissimos sint voluptas mollitia reprehenderit?</p>
@@ -54,15 +54,21 @@ export const Footer = () => {
                     <h2 className='font-bold'>Connect information</h2>
                     <ul className='grid gap-2'>
                     <li className='flex items-center mt-5 sm:mt-10'>
-                        <MdHomeRepairService size={40} />
+                        <div className='w-10 h-10 grid place-items-center'>
+                        <FaHome className='min-w-full min-h-full' />
+                        </div>
                         <p className='ml-4'>Lorem ipsum dolor , Vancouver, Canada</p>
                         </li>
                         <li className='flex items-center'>
-                        <IoIosPhonePortrait size={40} />
+                        <div className='w-10 h-10 grid place-items-center'>
+                        <IoIosPhonePortrait className='w-full h-full' />
+                        </div>
                         <p className='ml-4'>1234567890</p>
                         </li>
                         <li className='flex items-center'>
-                        <CiMail size={40} />
+                        <div className='w-10 h-10 grid place-items-center'>
+                        <CiMail className='w-full h-full' />
+                        </div>
                         <p className='ml-4'>contact@email.com</p>
                         </li>
                     </ul>
