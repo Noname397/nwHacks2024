@@ -57,7 +57,7 @@ export const Footer = () => {
                         <div className='w-10 h-10 grid place-items-center'>
                         <FaHome className='min-w-full min-h-full' />
                         </div>
-                        <p className='ml-4'>Lorem ipsum dolor , Vancouver, Canada</p>
+                        <p className='ml-4'>Lorem ipsum dolor, Vancouver, Canada</p>
                         </li>
                         <li className='flex items-center'>
                         <div className='w-10 h-10 grid place-items-center'>

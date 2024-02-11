@@ -39,11 +39,11 @@ export const Result = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <div className="container mx-auto">
+            <div className="px-3 sm:px-[24px] md:px-[60px]">
                 <h1 className="text-4xl font-bold text-center text-black mt-10">Your recipe is here!</h1>
-            </div>
             
-            {<div className="container flex mx-auto justify-center mt-10 gap-5">
+            
+            {<div className="grid place-items-center grid-cols-1 sm:grid-cols-3 mt-10 gap-8 md:gap-10">
                 {res.map((recipe, index) => (
                     <div key={index} className="max-w-sm rounded-lg overflow-hidden shadow-lg h-[500px] relative">
                         <img className="w-full object-cover" src={recipe.image} alt={recipe.title} />
@@ -58,6 +58,7 @@ export const Result = () => {
                     </div>
                 ))}
             </div>}
+            </div>
         </div>
     );
 };

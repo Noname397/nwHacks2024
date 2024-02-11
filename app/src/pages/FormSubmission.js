@@ -6,6 +6,7 @@ import { IoMdRemoveCircleOutline } from "react-icons/io";
 const listOfIntolerance = ["dairy", "egg", "gluten","grain", "peanut","seafood","sesame","shellfish","soy","sulfite","tree nut","wheat"];
 export const FormSubmission = () => {
     const ingredientsArray = require('../config');
+    const [appearSearchResult,setAppearSearchResult] = useState()
     const [listOfDishType,setListOfDishType] = useState(["main course","side dish","dessert","appetizer","salad","bread","breakfast","soup","beverage","sauce","marinate","fingerfood","snack","drink"])
     const [userDishType,setUserDishType] = useState([])
     const [listOfDiets,setListOfDiets] = useState(["gluten free","kenogenic", "vegeterian", "lacto-vegeterian", "ovo-vegetarian", "vegan","pescetarian", "paleo","primal","lowfodmap","whole30"])
@@ -72,15 +73,21 @@ export const FormSubmission = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <form className="grid grid-cols-5 gap-10 mx-[60px] mt-2 min-h-[100vh]">
-                <div className="col-span-3">
+            <form className="grid grid-cols-1 md:grid-cols-5 gap-10 px-10 min-[500px]:px-[60px] mt-10 min-h-[100vh]">
+                <div className="col-span-1 md:col-span-3">
                     <h1 className="text-[64px] font-bold text-center">What's in your fridge ?</h1>
-                    <div className="w-full rounded-[25px] border-[#5C9125] border-2 flex items-center py-2 px-3 mb-2 relative focus:border-b-0">
+                    <div className="w-full rounded-[25px] border-[#5C9125] border-2 flex items-center py-2 px-3 mb-2 relative focus:border-b-0" 
+                        >
                         <CiSearch size={20} />
-                        <input type="text" id="search-form" className="ml-2 focus:outline-none outline-none w-full" onChange={(e) => {
+                        <input type="text" id="search-form" 
+                       
+                        className="ml-2 focus:outline-none outline-none w-full autofill:!bg-white" onChange={(e) => {
                             handleUserInput(e.target.value)
-                        }} />
-                        {recommendation.length > 0 && <ul className="absolute top-[50px] left-[-1px] w-full bg-white z-[1] rounded-[25px] border-[#5C9125] border-2 p-3 ">
+                        }}
+                         />
+                        {(
+                            // appearSearchResult &&
+                             recommendation.length > 0) && <ul className="absolute top-[50px] left-[-1px] w-full bg-white z-[1] rounded-[25px] border-[#5C9125] border-2 p-3 ">
                         {recommendation.map((item,index) => {
                             return (
                                 <li className="w-full">
@@ -109,7 +116,7 @@ export const FormSubmission = () => {
                                                 addItemToList(e.target.value,userDishType,setUserDishType)
                                                 removeItemFromList(e.target.value,listOfDishType,setListOfDishType)
                                                 e.target.value = ""
-                                            }} className="w-[250px] h-[35px] border-2 border-[#5C9125] rounded-[15px] px-3 focus:outline-none outline-none">
+                                            }} className="w-[150px] sm:w-[200px] lg:w-[250px] h-[35px] border-2 border-[#5C9125] rounded-[15px] px-3 focus:outline-none outline-none">
                                 <option value="">Select</option>
                                 {
                                     listOfDishType.map((item,index) => {
@@ -139,14 +146,14 @@ export const FormSubmission = () => {
                         </div>
                         <div>   
                             <h3>Intolerance</h3>
-                            <ul className="w-3/5 grid grid-cols-3 gap-3">
+                            <ul className="w-full md:w-3/4 lg:w-3/5 grid grid-cols-2 min-[640px]:grid-cols-3 gap-4 lg:gap-6">
                                 {
                                     listOfIntolerance.map((item,index) => {
                                         return (
-                                            <li className={`w-[100px] min-h-[30px] border-2  border-[#5C9125] rounded-[15px] ${
+                                            <li className={`min-h-[30px] border-2  border-[#5C9125] rounded-[15px] ${
                                                elementInList(item,userIntolerance) ? "bg-[#5C9125] text-white" : "bg-white text-black"
                                             } `}>
-                                                <Link className="w-full flex justify-center capitalize" onClick={() => {
+                                                <Link className="w-full flex justify-center capitalize my-1 text-base" onClick={() => {
                                                     if (!elementInList(item,userIntolerance)) addItemToList(item,userIntolerance,setUserIntolerance)
                                                     else removeItemFromList(item,userIntolerance,setUserIntolerance)
                                                 }} >{item}</Link>
@@ -158,7 +165,7 @@ export const FormSubmission = () => {
                         </div>
                         <div className="w-3/5">
                             <h3>Diet</h3>
-                            <select className="w-[250px] h-[35px] border-2 border-[#5C9125] rounded-[15px] px-3 focus:outline-none outline-none"
+                            <select className="w-[150px] sm:w-[200px] lg:w-[250px] h-[35px] border-2 border-[#5C9125] rounded-[15px] px-3 focus:outline-none outline-none"
                             onChange={(e) => {
                                 removeItemFromList(e.target.value,listOfDiets,setListOfDiets)
                                 addItemToList(e.target.value,userDiet,setUserDiet)
@@ -192,10 +199,10 @@ export const FormSubmission = () => {
                                 })}
                             </ul>
                         </div>
-                        <div>
+                        <div className="w-full">
                             <h3>Max calories</h3>
-                            <div>
-                                <input type="range" min={0} max={1000} value={userMaxCalories} step={1} className="w-[470px] h-[5px] bg-[#5C9125]" onChange={(e) => {
+                            <div className="w-full">
+                                <input type="range" min={0} max={1000} value={userMaxCalories} step={1} className="w-full h-[5px] bg-[#5C9125]" onChange={(e) => {
                                     setUserMaxCalories(e.target.value)
                                 } } style={{
                                     WebkitAppearance: "none"
@@ -209,11 +216,11 @@ export const FormSubmission = () => {
                         </div>
                     </div>    
                 </div>
-                <div className="col-span-2 rounded-[45px] border border-black bg-[#E7EFDE] py-3 px-[60px] flex flex-col items-center">
+                <div className="col-span-1 md:col-span-2 rounded-[45px] border border-black bg-[#E7EFDE] py-3 px-6  lg:px-10 flex flex-col items-center">
                     <div className="flex justify-center">
-                        <h2 className="font-semibold text-[24px] border-b-[2px] border-black w-fit">Your ingredients</h2>
+                        <h2 className="font-semibold text-base lg:text-2xl border-b-[2px] border-black w-fit">Your ingredients</h2>
                     </div>
-                    <div className="w-4/5" >   
+                    <div className="w-full pl-6" >   
                         <ul className="list-disc">
                             {userIngredients.map((item,index) => {
                                 return (
@@ -222,7 +229,7 @@ export const FormSubmission = () => {
                                     <span className="capitalize">
                                     {item}
                                     </span>
-                                    <Link className="w-10 h-10 rounded-full bg-white grid place-items-center" onClick={() => {
+                                    <Link className="w-8 h-8 rounded-full bg-white grid place-items-center" onClick={() => {
                                         removeItemFromList(item,userIngredients,setUserIngrdients)
                                     }} >
                                         <span>-</span>
@@ -233,13 +240,10 @@ export const FormSubmission = () => {
                             })}
                         </ul>
                     </div>
-                    <div className="flex justify-center">
+                    <div className="flex justify-center mt-4 w-full">
                         <Link to={{
                             pathname: "/result",
-                        }} state={object} className="bg-[#5C9125] text-white min-w-[300px] min-h-[60px] m-auto rounded-[25px] grid place-content-center"> 
-                            {/* <button className="bg-[#5C9125] text-white min-w-[300px] min-h-[60px] m-auto rounded-[25px]" onClick={() => {
-                                handleRecipe()
-                            }}>Get recipe!</button> */}
+                        }} state={object} className="bg-[#5C9125] text-white w-full min-[300px]:w-[200px] min-h-[60px] m-auto rounded-[25px] grid place-content-center"> 
                             <span>Get recipe!</span>
                         </Link>
                     </div>
